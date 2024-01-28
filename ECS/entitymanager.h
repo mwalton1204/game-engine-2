@@ -9,15 +9,15 @@ class EntityManager {
 
     public:
 
-        EntityManager();
-        Entity createEntity();
-        void destroyEntity(Entity);
-        int getQtyEntities();
-        ComponentSet& getComponentSet(Entity);
+        EntityManager(); //initialize queue of available entity id's
+        Entity createEntity(); //get available id, pop from available, create new ComponentSet, store in livingEntities, return entity id
+        void destroyEntity(Entity); //erase from living entities, return id to available
+        int getQtyEntities(); //return livingEntities.size()
+        ComponentSet& getComponentSet(Entity); //return reference to livingEntities[id]
 
 
     private:
 
-        std::queue<Entity> availableIDs;
-        std::unordered_map<Entity, ComponentSet> livingEntities;
+        std::queue<Entity> availableIDs; //unused id's
+        std::unordered_map<Entity, ComponentSet> livingEntities; //living entities and their component sets
 };
