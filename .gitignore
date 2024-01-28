@@ -2,7 +2,8 @@
 *
 */
 
-#Unignore specific sub directories 
+#Unignore specific sub directories
+!/ECS
 
 #Unignore specific files
 !README.md
