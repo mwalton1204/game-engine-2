@@ -1,6 +1,7 @@
 #pragma once
 
 #include <queue>
+#include <vector>
 #include <unordered_map>
 
 #include "constants.h"
@@ -14,6 +15,7 @@ class EntityManager {
         void destroyEntity(Entity); //erase from living entities, return id to available
         int getQtyEntities(); //return livingEntities.size()
         ComponentSet& getComponentSet(Entity); //return reference to livingEntities[id]
+        std::vector<Entity> getEntities(); //return vector of keys from livingEntities
 
 
     private:
