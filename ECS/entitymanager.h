@@ -1,5 +1,6 @@
 #pragma once
 
+#include <queue>
 #include <unordered_map>
 
 #include "constants.h"
@@ -17,7 +18,6 @@ class EntityManager {
 
     private:
 
+        std::queue<Entity> availableIDs;
         std::unordered_map<Entity, ComponentSet> livingEntities;
-
-
 };
