@@ -4,6 +4,7 @@
 
 #Unignore specific sub directories
 !/ECS
+!/ECS/components
 
 #Unignore specific files
 !README.md
