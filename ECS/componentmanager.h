@@ -7,7 +7,7 @@
 #include <array>
 #include <vector>
 
-#define SENTINEL_VALUE -1;
+#define SENTINEL_INDEX -1;
 
 class ComponentManager {
 
@@ -17,46 +17,59 @@ class ComponentManager {
         template <typename T>
         void addComponent(Entity, Component, T);
         void removeComponent(Entity, Component);
+        //entityDestroyed
+        template <typename T>
+        void getComponentData(Entity, Component, T&);
+        //updateData
 
 
     private:
 
-        std::unordered_map<int, std::array<int, MAX_COMPONENTS>> indexMap;
+//array of vectors for each component that hold entity component data
         std::array<std::vector<BaseComponent>, MAX_COMPONENTS> componentData;
+// map with each entity keys and array values that store indices into each component's data vector
+        std::unordered_map<int, std::array<int, MAX_COMPONENTS>> indexMap;
 };
 
 template <typename T>
-void ComponentManager::addComponent(Entity eid, Component cid, T data){
-    componentData[cid].push_back[data];
-    indexMap[eid][cid] = componentData[cid].size() - 1;
+void ComponentManager::addComponent(Entity entityID, Component componentID, T data){
+
+componentData[componentID].push_back[data];
+
+//create a new array filled with sentinel values if one does not already exist for this entity
+    if(indexMap.find(entityID) == indexMap.end()) {
+        std::array<int, MAX_COMPONENTS> newArray;
+        newArray.fill(SENTINEL_INDEX);
+        newArray[componentID] = componentData[componentID].size() - 1;
+        indexMap[entityID] = newArray;
+    } else {
+//TODO: verify that entity does not have component
+        indexMap[entityID][componentID] = componentData[componentID].size() - 1;
+    }
 }
 
-void ComponentManager::removeComponent(Entity eid, Component cid){
-    int indexToRemove = indexMap[eid][cid];
+template <typename T>
+void getComponentData(Entity entityID, Component componentID, T& emptyData) {
+//TODO: verify that entity has component
+    int indexToGet = indexMap[entityID][componentID];
+    emptyData = componentData[componentID][indexToGet];
+}
 
-    componentData[cid].erase(componentData[cid].begin() + indexToRemove);
+void ComponentManager::removeComponent(Entity entityID, Component componentID){
+    auto& entityIndices = indexMap[entityID];
 
-// entity is removed from components data vector
-// iterate through all entities with this component
-// if index is higher than indexToRemove, decrement by 1
+//TODO: verify that entity has component
 
-    for(int i = 0; i < indexMap.size(); i++) {
-        if(indexMap[i][cid] > indexToRemove) {
-            int updatedIndex = indexMap[i][cid];
-            indexMap[i][cid] = updatedIndex--;
-        }
-    }
+    int indexToRemove = indexMap[entityID][componentID];
+    componentData[componentID].erase(componentData[componentID].begin() + indexToRemove);
 
-
-
-
-
-
-    for (int i = 0; i < MAX_COMPONENTS; ++i) {
-        if (indexMap[eid][i] > indexToRemove) {
-            --indexMap[eid][i];
+// decrement index values that were higher than indexToRemove because vector resizes dynamically
+    for(int i = 0; i < entityIndices.size(); i++) {
+        if(entityIndices[i] > indexToRemove) {
+            entityIndices[i]--;
         }
     }
     
-    indexMap[eid][cid] = SENTINEL_VALUE;
+//replace the index for this component with sentinel value    
+    indexMap[entityID][componentID] = SENTINEL_INDEX;
 }
