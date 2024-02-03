@@ -119,3 +119,11 @@ Vec2& Vec2::operator=(const Vec2& other) {
 
     return *this;
 }
+
+bool Vec2::operator==(const Vec2& other) const {
+    return x == other.x && y == other.y;
+}
+
+bool Vec2::operator!=(const Vec2& other) const {
+    return x != other.x || y != other.y;
+}
