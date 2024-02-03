@@ -5,6 +5,7 @@
 #Unignore specific sub directories
 !/ECS
 !/ECS/components
+!/Math
 
 #Unignore specific files
 !README.md
