@@ -8,9 +8,9 @@ struct Vec2 {
 // Binary Arithmetic
     Vec2 operator+(const Vec2&) const;
     Vec2 operator-(const Vec2&) const;
-    Vec2 operator*(float) const;
+    Vec2 operator*(const float) const;
     Vec2 operator*(const Vec2&) const;
-    Vec2 operator/(float) const;
+    Vec2 operator/(const float) const;
     Vec2 operator/(const Vec2&) const;
 
 //Unary Arithmetic
@@ -22,9 +22,9 @@ struct Vec2 {
 //Assignment
     Vec2& operator+=(const Vec2&);
     Vec2& operator-=(const Vec2&);
-    Vec2& operator*=(float);
+    Vec2& operator*=(const float);
     Vec2& operator*=(const Vec2&);
-    Vec2& operator/=(float);
+    Vec2& operator/=(const float);
     Vec2& operator/=(const Vec2&);
     Vec2& operator=(const Vec2&);
 
