@@ -31,10 +31,6 @@ struct Vec2 {
 //Relational
     bool operator==(const Vec2&) const;
     bool operator!=(const Vec2&) const;
-    bool operator<(const Vec2&) const;
-    bool operator<=(const Vec2&) const;
-    bool operator>(const Vec2&) const;
-    bool operator>=(const Vec2&) const;
 
     float x, y, z;
 
