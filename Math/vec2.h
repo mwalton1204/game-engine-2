@@ -11,10 +11,10 @@ class Vec2 {
 // Binary Arithmetic
         Vec2 operator+(const Vec2&) const;
         Vec2 operator-(const Vec2&) const;
-        Vec2 operator*(const float) const;
-        Vec2 operator*(const Vec2&) const;
-        Vec2 operator/(const float) const;
-        Vec2 operator/(const Vec2&) const;
+        Vec2 operator*(const float) const; //scalar
+        Vec2 operator*(const Vec2&) const; //element-wise
+        Vec2 operator/(const float) const; //scalar
+        Vec2 operator/(const Vec2&) const; //element-wise
 
 //Unary Arithmetic
         Vec2& operator++();
@@ -25,10 +25,10 @@ class Vec2 {
 //Assignment
         Vec2& operator+=(const Vec2&);
         Vec2& operator-=(const Vec2&);
-        Vec2& operator*=(const float);
-        Vec2& operator*=(const Vec2&);
-        Vec2& operator/=(const float);
-        Vec2& operator/=(const Vec2&);
+        Vec2& operator*=(const float); //scalar
+        Vec2& operator*=(const Vec2&); //element-wise
+        Vec2& operator/=(const float); //scalar
+        Vec2& operator/=(const Vec2&); //element-wise
         Vec2& operator=(const Vec2&);
 
 //Relational
