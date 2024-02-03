@@ -66,3 +66,56 @@ Vec2 Vec2::operator--(int) {
 
     return temp;
 }
+
+Vec2& Vec2::operator+=(const Vec2& other) {
+    x += other.x;
+    y += other.y;
+
+    return *this;
+}
+
+Vec2& Vec2::operator-=(const Vec2& other) {
+    x -= other.x;
+    y -= other.y;
+
+    return *this;
+}
+
+Vec2& Vec2::operator*=(const float scalar) {
+    x *= scalar;
+    y *= scalar;
+
+    return *this;
+}
+
+Vec2& Vec2::operator*=(const Vec2& other) {
+    x *= other.x;
+    y *= other.y;
+
+    return *this;
+}
+
+Vec2& Vec2::operator/=(const float scalar) {
+    if(scalar != 0) {
+        x /= scalar;
+        y /= scalar;
+    }
+
+    return *this;
+}
+
+Vec2& Vec2::operator/=(const Vec2& other) {
+    if(other.x != 0 && other.y != 0) {
+        x /= other.x;
+        y /= other.y;
+    }
+
+    return *this;
+}
+
+Vec2& Vec2::operator=(const Vec2& other) {
+    x = other.x;
+    y = other.y;
+
+    return *this;
+}
