@@ -127,3 +127,34 @@ bool Vec2::operator==(const Vec2& other) const {
 bool Vec2::operator!=(const Vec2& other) const {
     return x != other.x || y != other.y;
 }
+
+float Vec2::magnitude() const {
+    return sqrt((x * x) + (y * y));
+}
+
+void Vec2::normalize() {
+    float mag = magnitude();
+
+    if(mag != 0) {
+        x /= mag;
+        y /= mag;
+    }
+}
+
+float Vec2::dot(const Vec2& other) const {
+    return (x * other.x) + (y * other.y);
+}
+
+float Vec2::angle(const Vec2& other) const {
+    float absA = fabs(magnitude());
+    float absB = fabs(other.magnitude());
+    float angle;
+
+    if(absA != 0 && absB != 0) {
+    angle = acos(dot(other) / (absA * absB));
+    }
+
+    angle *= (180.0/M_PI);
+
+    return angle;
+}
