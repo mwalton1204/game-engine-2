@@ -39,12 +39,8 @@ class Vec2 {
 
 //Utility Methods
 
-        //magnitude
         float magnitude () const;
-        //normalize
         void normalize();
-        //dot
         float dot(const Vec2&) const;
-        //angle
         float angle(const Vec2&) const;
 };
